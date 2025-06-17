@@ -39,7 +39,7 @@ router.post(
         id: user.id,
         email: user.email,
       },
-      process.env.JWT_KEY!
+      process.env.JWT_KEY! // tells typescript that we have check to verify this env variable exists before
     );
 
     // store it in session cookie
