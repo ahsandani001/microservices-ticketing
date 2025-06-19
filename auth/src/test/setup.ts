@@ -1,6 +1,11 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import { app } from '../app';
+import request from 'supertest';
+
+declare global {
+  var signup: () => Promise<string[]>;
+}
 
 let mongo: any;
 beforeAll(async () => {
@@ -25,3 +30,21 @@ afterAll(async () => {
   await mongo.stop();
   await mongoose.connection.close();
 });
+
+global.signup = async (): Promise<string[]> => {
+  const email = 'test@test.com';
+  const password = 'password';
+
+  const res = await request(app)
+    .post('/api/users/signup')
+    .send({
+      email,
+      password,
+    })
+    .expect(201);
+
+  const cookie: string[] | undefined = res.get('Set-Cookie');
+  if (!cookie) throw new Error('No cookie set');
+
+  return cookie;
+};
