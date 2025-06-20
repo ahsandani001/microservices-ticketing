@@ -17,13 +17,13 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
-          # - path: /posts
-          #   pathType: Prefix
-          #   backend:
-          #     service:
-          #       name: query-srv
-          #       port:
-          #         number: 4002
+          - path: /?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 3000
           # - path: /posts/?(.*)/comments
           #   pathType: ImplementationSpecific
           #   backend:
