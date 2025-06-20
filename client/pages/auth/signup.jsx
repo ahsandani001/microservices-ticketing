@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Router from 'next/router';
-import userRequest from '../../hooks/user-request';
+import userRequest from '../../hooks/use-request';
 
 export default () => {
   const [email, setEmail] = useState('');
