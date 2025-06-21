@@ -17,7 +17,6 @@ export class RequestValidationError extends CustomError {
 
   serializeErrors() {
     return this.errors.filter(this.isFieldValidationError).map((error) => {
-      console.log('AUTH ERROR: ', { message: error.msg, field: error.path });
       return { message: error.msg, field: error.path };
     });
   }

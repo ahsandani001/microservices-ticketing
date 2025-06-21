@@ -10,7 +10,6 @@ export class DatabaseConnectionError extends CustomError {
   }
 
   serializeErrors() {
-    console.log('AUTH ERROR: ', this.reason);
     return [{ message: this.reason }];
   }
 }
