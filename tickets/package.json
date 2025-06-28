@@ -19,7 +19,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@tickets-packages/common": "^1.0.7",
+    "@tickets-packages/common": "^1.0.8",
     "@types/cookie-session": "^2.0.49",
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
