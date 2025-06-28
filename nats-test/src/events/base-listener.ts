@@ -1,28 +1,6 @@
-import nats from 'node-nats-streaming';
-import { randomBytes } from 'crypto';
-import { TicketCreatedListener } from './events/ticket-created-listener';
+import { Message, Stan } from 'node-nats-streaming';
 
-console.clear();
-
-const stan = nats.connect('ticketing', randomBytes(4).toString('hex'), {
-  url: 'http://localhost:4222',
-});
-
-stan.on('connect', () => {
-  console.log('Listener connected to NATS');
-
-  stan.on('close', () => {
-    console.log('NATS connection closed!');
-    process.exit();
-  });
-
-  new TicketCreatedListener(stan).listen();
-});
-
-process.on('SIGINT', () => stan.close());
-process.on('SIGTERM', () => stan.close());
-
-abstract class Listener {
+export abstract class Listener {
   abstract subject: string;
   abstract queueGroupName: string;
   abstract onMessage(data: any, msg: Message): void;
@@ -64,16 +42,5 @@ abstract class Listener {
     return typeof data === 'string'
       ? JSON.parse(data)
       : JSON.parse(data.toString('utf-8'));
-  }
-}
-
-class TicketCreatedListener extends Listener {
-  subject = 'ticket:created';
-  queueGroupName = 'payments-service';
-
-  onMessage(data: any, msg: Message): void {
-    console.log('Event Data!', data);
-
-    msg.ack();
   }
 }
