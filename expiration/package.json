@@ -19,7 +19,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@tickets-packages/common": "^1.0.15",
+    "@tickets-packages/common": "^1.0.16",
     "@types/bull": "^3.15.9",
     "bull": "^4.16.5",
     "node-nats-streaming": "0.3.2",
