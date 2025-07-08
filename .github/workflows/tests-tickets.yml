@@ -1,8 +1,8 @@
 name: tests-tickets
 
-on: 
-  pull_request: 
-    paths: 
+on:
+  pull_request:
+    paths:
       - tickets/**
 
 jobs:

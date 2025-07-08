@@ -1,8 +1,8 @@
 name: tests-payments
 
-on: 
-  pull_request: 
-    paths: 
+on:
+  pull_request:
+    paths:
       - 'payments/**'
 
 jobs:
