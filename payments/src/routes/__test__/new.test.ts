@@ -63,7 +63,7 @@ it('returns a 400 when purchasing a cancelled order', async () => {
 
 it('returns a 201 with valid input', async () => {
   const userId = new mongoose.Types.ObjectId().toHexString();
-  const price = Math.floor(Math.random() * 100000);
+  const price = 10;
 
   const order = Order.build({
     id: new mongoose.Types.ObjectId().toHexString(),
@@ -74,26 +74,32 @@ it('returns a 201 with valid input', async () => {
   });
   await order.save();
 
-  await request(app)
+  const paymentData = await request(app)
     .post('/api/payments')
     .set('Cookie', global.signup(userId))
     .send({
       token: 'tok_visa',
       orderId: order.id,
-    })
-    .expect(201);
+    });
+  expect(201);
 
-  const stripeCharges = await stripe.charges.list({ limit: 50 });
+  const payment = Payment.build({
+    orderId: order.id,
+    stripeId: paymentData.body.id,
+  });
+  await payment.save();
+
+  const stripeCharges = await stripe.paymentIntents.list({ limit: 50 });
   const stripeCharge = stripeCharges.data.find((charge: any) => {
     return charge.amount === price * 100;
   });
 
   expect(stripeCharge).toBeDefined();
   expect(stripeCharge.currency).toEqual('usd');
-  const payment = await Payment.findOne({
+  const paymentInfo = await Payment.findOne({
     orderId: order.id,
     stripeId: stripeCharge.id,
   });
 
-  expect(payment).not.toBeNull();
+  expect(paymentInfo).not.toBeNull();
 });
