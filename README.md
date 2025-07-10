@@ -25,6 +25,31 @@ Event-driven ticketing platform built with Node.js, Kubernetes, and Next.js
 
 ## Technology Stack
 
+### Shared Module (@tickets-packages/common)
+
+- **Package Name**: `@tickets-packages/common` (version 1.0.17)
+- **Purpose**: Reusable npm package containing shared infrastructure code
+- **Key Components**:
+  - **Authentication System**:
+    - JWT verification middleware
+    - Cookie session configuration
+    - Current user context management
+  - **Error Handling**:
+    - Custom error classes (BadRequest, NotAuthorized, DatabaseConnection)
+    - Centralized error handler middleware
+  - **Event Bus**:
+    - Base listener/publisher classes
+    - NATS client configuration
+    - Event type definitions
+  - **Validation**:
+    - Request validation middleware
+    - Schema validation utilities
+- **Publishing**:
+
+  - Version updated with `npm version patch`
+  - Built with TypeScript (`npm run build`)
+  - Published to private registry (`npm publish`)
+
 - **Frontend**: Next.js, React, Axios
 - **Backend**: Node.js, Express, TypeScript
 - **Database**: MongoDB (per service)
@@ -63,7 +88,6 @@ cd ../tickets && npm install
 ```bash
 # Start development environment
 skaffold dev
-
 ```
 
 ## Environment Variables
