@@ -39,7 +39,6 @@ Event-driven ticketing platform built with Node.js, Kubernetes, and Next.js
     - Centralized error handler middleware
   - **Event Bus**:
     - Base listener/publisher classes
-    - NATS client configuration
     - Event type definitions
   - **Validation**:
     - Request validation middleware
@@ -72,10 +71,9 @@ Event-driven ticketing platform built with Node.js, Kubernetes, and Next.js
 git clone https://github.com/ahsandani001/microservices-ticketing.git
 cd microservices-ticketing
 
-# Install dependencies for each service
+# Install dependencies for services
 cd auth && npm install
 cd ../client && npm install
-cd ../common && npm install
 cd ../expiration && npm install
 cd ../orders && npm install
 cd ../payments && npm install
