@@ -26,6 +26,7 @@ Event-driven ticketing platform built with Node.js, Kubernetes, and Next.js
 ## Technology Stack
 
 ### Shared Module (@tickets-packages/common)
+
 - **Package Name**: `@tickets-packages/common` (version 1.0.17)
 - **Purpose**: Reusable npm package containing shared infrastructure code
 - **Key Components**:
@@ -44,6 +45,7 @@ Event-driven ticketing platform built with Node.js, Kubernetes, and Next.js
     - Request validation middleware
     - Schema validation utilities
 - **Publishing**:
+
   - Version updated with `npm version patch`
   - Built with TypeScript (`npm run build`)
   - Published to private registry (`npm publish`)
@@ -58,12 +60,14 @@ Event-driven ticketing platform built with Node.js, Kubernetes, and Next.js
 ## Getting Started
 
 ### Prerequisites
+
 - Docker Desktop with Kubernetes
 - Skaffold
 - Node.js v16+
 - NATS Streaming Server
 
 ### Installation
+
 ```bash
 git clone https://github.com/ahsandani001/microservices-ticketing.git
 cd microservices-ticketing
@@ -80,6 +84,7 @@ cd ../tickets && npm install
 ```
 
 ### Deployment
+
 ```bash
 # Start development environment
 skaffold dev
@@ -97,6 +102,7 @@ NATS_URL=nats://nats-srv:4222
 ```
 
 ## Kubernetes Setup
+
 ```bash
 # Apply ingress-nginx
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml
@@ -106,6 +112,7 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=your_secret
 ```
 
 ## Contributing
+
 Pull requests welcome. For major changes, please open an issue first.
 
 [![GitHub Repo](https://img.shields.io/badge/View%20on-GitHub-brightgreen)](https://github.com/ahsandani001/microservices-ticketing)
